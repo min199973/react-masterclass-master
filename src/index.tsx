@@ -12,7 +12,7 @@ const root = ReactDOM.createRoot(
 );
 
 root.render(
-  <QueryClientProvider client={queryClient} contextSharing={true}>
+  <QueryClientProvider client={queryClient}>
     <ThemeProvider theme={theme}>
       <App />
     </ThemeProvider>
