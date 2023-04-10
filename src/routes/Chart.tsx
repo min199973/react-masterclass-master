@@ -25,70 +25,48 @@ function Chart({ coinId }: ChartProps) {
       refetchInterval: 10000,
     }
   );
-  console.log(data?.map((price) => price.close) ?? []);
   return (
     <div>
       {isLoading ? (
         "Loading chart..."
       ) : (
         <ApexCharts
-          type="line"
-          series={[
-            {
-              name: "Price",
-              data: data?.map((price) => price.close) ?? [],
-            },
-          ]}
+          type="candlestick"
+          series={
+            [
+              {
+                name: "Price",
+                data: data?.map((price) => {
+                  return {
+                    x: price.time_close,
+                    y: [price.open, price.high, price.low, price.close],
+                  };
+                }),
+              }, // opne high low close
+            ] as any
+          }
           options={{
             theme: {
               mode: "dark",
             },
             chart: {
+              type: "candlestick",
               height: 500,
-              width: 500,
               toolbar: {
                 show: false,
               },
-              background: "transparent",
             },
-            grid: {
-              show: false,
-            },
-            stroke: {
-              curve: "smooth",
-              width: 5,
+            title: {
+              text: "CandleStick Chart",
+              align: "left",
             },
             yaxis: {
-              show: false,
+              tooltip: {
+                enabled: true,
+              },
             },
             xaxis: {
-              axisBorder: {
-                show: false,
-              },
-              axisTicks: {
-                show: false,
-              },
-              labels: {
-                show: false,
-                datetimeFormatter: { month: "mmm 'yy" },
-              },
               type: "datetime",
-              categories: data?.map((price) =>
-                new Date(+price.time_close * 1000).toISOString()
-              ),
-            },
-            fill: {
-              type: "gradient",
-              gradient: {
-                gradientToColors: ["#2ecc71"],
-                stops: [0, 100],
-              },
-              colors: ["#3498db"],
-            },
-            tooltip: {
-              y: {
-                formatter: (value) => `${value.toFixed(2)}`,
-              },
             },
           }}
         />
