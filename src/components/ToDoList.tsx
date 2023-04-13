@@ -11,7 +11,6 @@ import CreateToDo from "./CreateToDo";
 import ToDo from "./ToDo";
 
 function ToDoList() {
-  console.log;
   const toDos = useRecoilValue(toDoState);
   return (
     <div>
