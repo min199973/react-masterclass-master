@@ -17,6 +17,8 @@
     "@types/react-dom": "^18.0.11",
     "@types/react-helmet": "^6.1.6",
     "apexcharts": "^3.37.3",
+    "font-awesome": "^4.7.0",
+    "framer-motion": "^10.15.1",
     "react": "^18.2.0",
     "react-apexcharts": "^1.4.0",
     "react-beautiful-dnd": "^13.1.1",
